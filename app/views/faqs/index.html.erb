@@ -1,10 +1,10 @@
 <h1>FAQs</h1>
 
-<ul>
+<ul id='faqs' data-update-url="<%= sort_faqs_url %>">
 <% @faqs.each do |faq| %>
-  <li>
-    <%= link_to h(faq.question), faq %>
-  </li>
+  <%= content_tag_for :li, faq do %>
+	  <%= link_to h(faq.question), faq %>  
+  <% end %>
 <% end %>
 </ul>
 
