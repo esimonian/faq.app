@@ -6,3 +6,6 @@ jQuery ->
 
 jQuery ->
   $('.best_in_place').best_in_place()
+
+jQuery ->
+  $( ".accordion" ).accordion({header: "h3"});

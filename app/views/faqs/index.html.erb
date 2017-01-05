@@ -1,18 +1,18 @@
 <h1>FAQs</h1>
 
-<ul id='faqs' data-update-url="<%= sort_faqs_url %>">
+<div id='faqs' class="accordion" data-update-url="<%= sort_faqs_url %>">
 <% @faqs.each do |faq| %>
-  <%= content_tag_for :li, faq do %>
-	  <p>
+  <%= content_tag_for :div, faq do %>
+	  <h3>
       <strong>Question:</strong>
       <%= best_in_place faq, :question, :as => :input %>
-    </p>
-    <p>
+    </h3>
+    <div>
       <strong>Answer:</strong>
       <%= best_in_place faq, :answer %>
-    </p> 
+    </div> 
   <% end %>
 <% end %>
-</ul>
+</div>
 
 <p><%= link_to "New FAQ", new_faq_path %></p>
