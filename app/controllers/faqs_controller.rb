@@ -12,7 +12,7 @@ class FaqsController < ApplicationController
   end
 
   def create
-    @faq = Faq.new(params[:faq])
+    @faq = Faq.new(faq_params)
     if @faq.save
       redirect_to @faq, notice: "Successfully created FAQ."
     else
@@ -26,11 +26,17 @@ class FaqsController < ApplicationController
 
   def update
     @faq = Faq.find(params[:id])
-    if @faq.update_attributes(params[:faq])
-      redirect_to @faq, notice: "Successfully updated FAQ."
-    else
-      render :edit
+
+    respond_to do |format|
+      if @faq.update_attributes(faq_params)
+        format.html {redirect_to @faq, notice: "Successfully updated FAQ."}
+        format.json { respond_with_bip(@faq) }
+      else
+        format.html {render :edit }
+        format.json { respond_with_bip(@faq) }
+      end
     end
+    
   end
 
   def destroy
@@ -44,5 +50,10 @@ class FaqsController < ApplicationController
       Faq.where(id: id).update_all({position: index+1})
     end
     head :no_content
+  end
+
+  private 
+  def faq_params
+    params.require(:faq).permit(:question, :answer, :position)
   end
 end

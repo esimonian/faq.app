@@ -3,7 +3,14 @@
 <ul id='faqs' data-update-url="<%= sort_faqs_url %>">
 <% @faqs.each do |faq| %>
   <%= content_tag_for :li, faq do %>
-	  <%= link_to h(faq.question), faq %>  
+	  <p>
+      <strong>Question:</strong>
+      <%= best_in_place faq, :question, :as => :input %>
+    </p>
+    <p>
+      <strong>Answer:</strong>
+      <%= best_in_place faq, :answer %>
+    </p> 
   <% end %>
 <% end %>
 </ul>

@@ -2,11 +2,11 @@
 
 <p>
   <strong>Question:</strong>
-  <%= @faq.question %>
+  <%= best_in_place @faq, :question, :as => :input %>
 </p>
 <p>
   <strong>Answer:</strong>
-  <%= @faq.answer %>
+  <%= best_in_place @faq, :answer %>
 </p>
 
 <p>
